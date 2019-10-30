@@ -8,4 +8,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 
+RUN python3 unit_tests.py
+
 CMD [ "python3", "app.py" ]
