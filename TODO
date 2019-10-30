@@ -1,0 +1,7 @@
+* setup unit tests (c.f. flask docs)
+* figure out if there are more constraints on the monthly data (start date, granularity, etc.)
+* separate flask api, csv formatting, data parsing and wattwatcher api
+* create model for data
+* data parsing: parse JSON to list of model objects
+* csv formatting: takes list of model objects, returns string
+* handle wattwatcher_api error => error code
