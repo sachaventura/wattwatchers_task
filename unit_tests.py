@@ -15,6 +15,10 @@ class MonthlyEnergyTests(unittest.TestCase):
         response = self.app.get('/monthly_energy_csv?api_key=key_4179959b76294b92a26eab1c47cc3f36&device_id=D704206228658')
         self.assertEqual(response.status_code, 200)
 
+    def test_invalid_from_ts(self):
+        response = self.app.get('/monthly_energy_csv?api_key=key_foobar&device_id=D704206228658&from_ts=foobar')
+        self.assertEqual(response.status_code, 400)
+
     def test_invalid_credentials(self):
         response = self.app.get('/monthly_energy_csv?api_key=key_foobar&device_id=D704206228658')
         self.assertEqual(response.status_code, 400)
