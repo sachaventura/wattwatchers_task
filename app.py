@@ -28,8 +28,8 @@ def monthly_energy_csv():
     # make call to WattWatchers API
     try:
         results = wattwatchers_api.long_energy(api_key, device_id, from_ts)
-    except:
-        return 'Could not fetch data from wattwachers api', 400
+    except Exception as e:
+        return 'Could not fetch data from wattwachers api: %s' % str(e), 400
 
      # determine the number of channels
     num_channels = 0
