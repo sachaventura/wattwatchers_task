@@ -31,6 +31,8 @@ The tests are run automatically during the docker image build process.
 
 
 # Structure
-I have opted for the most simple "Single Module" structure to save time with the project setup, as advised by exploreflask.com:
+I have opted for the most pragmatic "Single Module" structure, considering the project size and to save time with the project setup:
 
 `This is great for quick projects (like the ones used for tutorials), where you just need to serve a few routes and you’ve got less than a few hundred lines of application code.`
+
+http://exploreflask.com/en/latest/organizing.html#single-module
