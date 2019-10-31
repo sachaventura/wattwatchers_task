@@ -1,9 +1,9 @@
 import requests
 import json
 
-from utils import joules_to_kwh
-
 WATTWATCHERS_API_V3_URL = 'https://api-v3.wattwatchers.com.au'
+
+GRANULARITY = ['5m', '15m', '30m', 'hour', 'day', 'week', 'month']
 
 DURATION_FIELD = 'duration'
 TIMESTAMP_FIELD = 'timestamp'
@@ -23,7 +23,7 @@ def make_get_request(path, api_key, **kwargs):
     endpoint = '{url}/{path}'.format(url=WATTWATCHERS_API_V3_URL, path=path)
     return requests.get(endpoint, **kwargs)
 
-def long_energy(api_key, device_id, granularity = None, from_ts = None):
+def long_energy(api_key, device_id, granularity = None, from_ts = None, to_ts = None):
     params = {}
 
     if granularity:
@@ -31,6 +31,9 @@ def long_energy(api_key, device_id, granularity = None, from_ts = None):
 
     if from_ts:
         params['fromTs'] = from_ts
+
+    if to_ts:
+        params['toTs'] = to_ts
 
     path = 'long-energy/{device_id}'.format(device_id=device_id)
 
@@ -41,11 +44,5 @@ def long_energy(api_key, device_id, granularity = None, from_ts = None):
 
     # parse JSON
     results = json.loads(response.content)
-
-    # convert energy values from joules to kWh
-    for entry in results:
-        for key in entry:
-            if key in ALL_ENERGY_FIELDS:
-                entry[key] = [joules_to_kwh(int(x)) for x in entry[key]]
 
     return results

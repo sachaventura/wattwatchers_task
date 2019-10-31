@@ -4,13 +4,22 @@ Currently the only endpoint implemented is:
 
 `GET /monthly_energy_csv`
 
+
+
 Request parameters:
 
 | parameter     | format        | required | Notes |
 | ------------- |:-------------:| --------:| -----:|
 | api_key       | string        |        Y |       |
 | device_id     | string        |        Y |       |
-| from_ts       | integer       |        N | Unix timestamp, seconds since epoch. Returns data with timestamp >= fromTs. Default, if not specified: first long energy entry.|
+| from_ts       | integer       |        N | default: 31 days from now|
+| to_ts         | integer       |        N | default: now|
+| granularity   | string        |        N | default: 30m|
+
+The granularity is restricted to 30 minutes and above, to prevent making multiple calls.
+TODO: allow finer granularity by allowing multiple ww api calls until we cover 1 month worth of data.
+
+c.f https://docs.wattwatchers.com.au/api/v3/endpoints.html#get-long-energydevice-id for more details.
 
 ## Build & Run
 Docker is used to containerise the Python + Flask application.
