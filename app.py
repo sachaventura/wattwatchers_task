@@ -23,7 +23,7 @@ def monthly_energy_csv():
     # get parameters
     api_key = request.args.get('api_key')
     device_id = request.args.get('device_id')
-    from_ts = request.args.get('from_ts') or '5m'
+    from_ts = request.args.get('from_ts')
 
     # make call to WattWatchers API
     try:

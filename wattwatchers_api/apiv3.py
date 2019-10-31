@@ -23,11 +23,14 @@ def make_get_request(path, api_key, **kwargs):
     endpoint = '{url}/{path}'.format(url=WATTWATCHERS_API_V3_URL, path=path)
     return requests.get(endpoint, **kwargs)
 
-def long_energy(api_key, device_id, granularity = '5m', fromTs = None):
-    params = {'granularity': granularity}
+def long_energy(api_key, device_id, granularity = None, from_ts = None):
+    params = {}
 
-    if fromTs:
-        params['fromTs'] = fromTs
+    if granularity:
+        params['granularity'] = granularity
+
+    if from_ts:
+        params['fromTs'] = from_ts
 
     path = 'long-energy/{device_id}'.format(device_id=device_id)
 
