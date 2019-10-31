@@ -27,4 +27,10 @@ See the results by opening the following URL in your browser:
 http://0.0.0.0:5000/monthly_energy_csv?api_key=key_4179959b76294b92a26eab1c47cc3f36&device_id=D704206228658
 
 # Unit tests
-The tests are run automatically as part of the Docker build process.
+The tests are run automatically during the docker image build process.
+
+
+# Structure
+I have opted for the most simple "Single Module" structure to save time with the project setup, as advised by exploreflask.com:
+
+`This is great for quick projects (like the ones used for tutorials), where you just need to serve a few routes and you’ve got less than a few hundred lines of application code.`
